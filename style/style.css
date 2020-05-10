@@ -1,0 +1,130 @@
+:root {
+  --primary-bg-color: rgb(0, 108, 197);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: lightgrey;
+}
+header {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 220px;
+  background: linear-gradient(to bottom, skyblue, royalblue);
+  color: aliceblue;
+}
+.svg {
+  color: aqua;
+}
+.navbar {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-content: stretch;
+  width: 50rem;
+}
+.navbar-nav {
+  flex: auto;
+  list-style: none;
+  /* 解决inline元素间的多余空格问题 */
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+}
+.navbar-item {
+  font-size: 1rem;
+  display: inline-block;
+  flex: 1;
+}
+
+.navbar-btn {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  line-height: 2rem;
+  /* background: var(--primary-bg-color); */
+  /* height: 2rem; */
+  /* width: inherit; */
+}
+.primary:hover {
+  background-color: rgba(0, 108, 197, 0.9);
+  box-shadow: 3px 3px 3px #aaa;
+}
+
+.form {
+  margin: 2rem 0;
+  width: 32rem;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+}
+main {
+  display: flex;
+  width: 90vw;
+  align-content: stretch;
+}
+main article {
+  flex: 5;
+  background: aliceblue;
+}
+main aside {
+  flex: 1;
+  margin-left: 1rem;
+  background: antiquewhite;
+}
+.btn {
+  height: 2rem;
+  flex: auto;
+  border: none;
+}
+.search {
+  /* flex: 12; */
+  flex: auto;
+  height: 2rem;
+}
+.primary {
+  color: #fff;
+  background: var(--primary-bg-color);
+}
+.success {
+  color: #fff;
+  background: rgb(118, 221, 0);
+}
+.danger {
+  color: #fff;
+  background: rgb(221, 26, 0);
+}
+.dark {
+  color: #eee;
+  background: #050201;
+}
+ul {
+  list-style: none;
+}
+@media screen and (max-width: 800px) {
+  .navbar {
+    width: 30rem;
+  }
+  .form {
+    width: 20rem;
+  }
+  main aside {
+    flex: 2;
+  }
+}
+@media (max-width: 500px) {
+  main > aside {
+    display: none;
+  }
+}
