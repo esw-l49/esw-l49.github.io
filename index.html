@@ -109,9 +109,24 @@
         switch (URLParams.page) {
           case "html":
             title.innerHTML = "Html";
-            paragraph.innerHTML = "Html:超文本标记语言";
-            article.appendChild(title);
-            article.appendChild(paragraph);
+            fetch("data/json/html.json")
+              .then((res) => res.json())
+              .then((res) => {
+                const h1 = document.createElement("h3");
+                const h2 = document.createElement("h3");
+                const p1 = document.createElement("p");
+                const p2 = document.createElement("p");
+                h1.innerHTML = res.section[0].title;
+                h2.innerHTML = res.section[1].title;
+                p1.innerHTML = res.section[0].content;
+                p2.innerHTML = res.section[1].content;
+                paragraph.appendChild(h1);
+                paragraph.appendChild(p1);
+                paragraph.appendChild(h2);
+                paragraph.appendChild(p2);
+                article.appendChild(paragraph);
+              });
+
             break;
           case "css":
             title.innerHTML = "CSS";
@@ -127,10 +142,24 @@
             break;
           default:
             title.innerHTML = "Html";
-            paragraph.innerHTML = "Html:超文本标记语言";
-            article.appendChild(title);
-            article.appendChild(paragraph);
-            article.appendChild();
+            fetch("./data/json/html.json")
+              .then((res) => res.json())
+              .then((res) => {
+                const h1 = createElement("h3");
+                const h2 = createElement("h3");
+                const p1 = createElement("p");
+                const p2 = createElement("p");
+                h1.innerHTML = res.section[0].title;
+                h2.innerHTML = res.section[1].title;
+                p1.innerHTML = res.section[0].content;
+                p2.innerHTML = res.section[1].content;
+                paragraph.appendChild(h1);
+                paragraph.appendChild(p1);
+                paragraph.appendChild(h2);
+                paragraph.appendChild(p2);
+                article.appendChild(paragraph);
+              });
+
             break;
         }
       }
