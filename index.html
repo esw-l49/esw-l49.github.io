@@ -55,13 +55,15 @@
           <a class="navbar-btn primary" href="index.html">主页</a>
         </li>
         <li class="navbar-item">
-          <a class="navbar-btn primary" href="article.html">文章</a>
+          <a class="navbar-btn primary" href="pages/write-article.html"
+            >写文章</a
+          >
         </li>
         <li class="navbar-item">
-          <a class="navbar-btn primary" href="demo.html">习作</a>
+          <a class="navbar-btn primary" href="pages/demo.html">习作</a>
         </li>
         <li class="navbar-item">
-          <a class="navbar-btn primary" href="about.html">关于</a>
+          <a class="navbar-btn primary" href="pages/about.html">关于</a>
         </li>
         <!-- 共n个导航栏项目，省略…… -->
       </ul>
@@ -73,15 +75,19 @@
     </form>
     <main>
       <!-- 网页主体内容 -->
-      <article>
+      <article id="article">
         <!-- 此处包含一个 article（一篇文章），内容略…… -->
-        <h3>Html</h3>
       </article>
 
       <aside>
         <!-- 侧边栏在主内容右侧 -->
         <h2>相关链接</h2>
         <ul id="links">
+          <li><a href="index.html?page=html">HTML</a></li>
+          <li><a href="index.html?page=css">CSS</a></li>
+          <li><a href="index.html?page=javascript">Javascript</a></li>
+          <li><a href="index.html?page=vue">Vue</a></li>
+          <li><a href="index.html?page=react">React</a></li>
           <li><a href="https://github.com/esw-l49">我的Github</a></li>
           <!-- 侧边栏有n个超链接，略略略…… -->
         </ul>
@@ -92,5 +98,42 @@
       <!-- 本站所有网页的统一页脚 -->
       <p>Copyright© 2020 Eswing</p>
     </footer>
+    <script src="js/app.js"></script>
+    <script>
+      const article = document.querySelector("#article");
+      const URLParams = getURLParameters(window.location.search);
+      // console.log(window.location);
+      if (URLParams.page != undefined) {
+        const title = document.createElement("h3");
+        const paragraph = document.createElement("p");
+        switch (URLParams.page) {
+          case "html":
+            title.innerHTML = "Html";
+            paragraph.innerHTML = "Html:超文本标记语言";
+            article.appendChild(title);
+            article.appendChild(paragraph);
+            break;
+          case "css":
+            title.innerHTML = "CSS";
+            paragraph.innerHTML = "CSS:层叠样式表";
+            article.appendChild(title);
+            article.appendChild(paragraph);
+            break;
+          case "javascript":
+            title.innerHTML = "Javascript";
+            paragraph.innerHTML = "Javascript:网页脚本语言";
+            article.appendChild(title);
+            article.appendChild(paragraph);
+            break;
+          default:
+            title.innerHTML = "Html";
+            paragraph.innerHTML = "Html:超文本标记语言";
+            article.appendChild(title);
+            article.appendChild(paragraph);
+            article.appendChild();
+            break;
+        }
+      }
+    </script>
   </body>
 </html>
