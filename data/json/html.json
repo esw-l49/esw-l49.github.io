@@ -4,7 +4,7 @@
   "section": [
     {
       "title": "标签(Tag)",
-      "content": "标签是Html元素的代码表示方法，元素名即标签名，如：`<head></head>`"
+      "content": "标签是Html元素的代码表示方法，元素名即标签名，如：&lt;head&gt;&lt;/head&gt;"
     },
     {
       "title": "属性(Property)",
