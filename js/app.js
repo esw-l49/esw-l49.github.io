@@ -229,7 +229,3 @@ document.addEventListener("fullscreenchange", function (e) {
     console.log("退出全屏");
   }
 });
-Router.route("/red", function () {
-  document.querySelector("#article").style.backgroundColor = "blue";
-});
-console.log(location);

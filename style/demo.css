@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  justify-content: stretch;
+}
+
+.nav {
+  position: relative;
+  width: 250px;
+  height: 100vh;
+  padding: 10px 15px;
+  color: orange;
+  background: #121212;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: azure;
+}
+.nav a {
+  display: block;
+  height: 1.6rem;
+}
+.menulist {
+  display: block;
+  margin: 10px 0;
+}
+.menulist h3 {
+  padding: 5px 0;
+}
+.menulist .listbox {
+  padding: 0 10px;
+}
+
+.content {
+  height: 100vh;
+  width: 100%;
+  background: #343434;
+  color: aliceblue;
+  text-align: center;
+}
+
+.content .gametitle {
+  margin: 15px 0;
+}
+
+.content .mine-map {
+  background: #909090;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: repeat(9, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+}
+
+.content .mine-map .mine-seat {
+  background-color: cadetblue;
+  vertical-align: center;
+  line-height: 50px;
+  font-size: 2rem;
+}
