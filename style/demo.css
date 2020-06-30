@@ -43,6 +43,9 @@ a {
   background: #343434;
   color: aliceblue;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .content .gametitle {
@@ -51,15 +54,31 @@ a {
 
 .content .mine-map {
   background: #909090;
-  display: grid;
-  grid-gap: 2px;
-  grid-template-columns: repeat(9, 1fr);
-  grid-auto-rows: minmax(50px, auto);
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .content .mine-map .mine-seat {
   background-color: cadetblue;
-  vertical-align: center;
+  width: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  border: cornsilk solid 1px;
   line-height: 50px;
-  font-size: 2rem;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.easy-map {
+  width: 450px;
+}
+.hard-map {
+  width: 800px;
+}
+.expert-map {
+  width: 1500px;
 }
