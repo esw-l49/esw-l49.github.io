@@ -82,3 +82,16 @@ a {
 .expert-map {
   width: 1500px;
 }
+.mine-hide {
+  visibility: hidden;
+}
+
+.mine-boom {
+  visibility: visible;
+  height: 30px;
+  width: 30px;
+}
+
+.swiped {
+  color: orange;
+}
