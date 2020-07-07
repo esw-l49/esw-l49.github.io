@@ -5,12 +5,15 @@
 body {
   display: flex;
   justify-content: stretch;
+  width: 100vw;
+  height: 100vh;
 }
 
 .nav {
   position: relative;
   width: 250px;
-  height: 100vh;
+  height: 100%;
+  box-sizing: border-box;
   padding: 10px 15px;
   color: orange;
   background: #121212;
@@ -38,7 +41,7 @@ a {
 }
 
 .content {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background: #343434;
   color: aliceblue;
@@ -52,6 +55,11 @@ a {
   margin: 15px 0;
 }
 
+.content .tip {
+  font-size: 12px;
+  margin: 5px;
+}
+
 .content .mine-map {
   background: #909090;
   margin: 10px 0;
@@ -60,14 +68,14 @@ a {
   justify-content: center;
 }
 
-.content .mine-map .mine-seat {
+.mine-seat {
   background-color: cadetblue;
   width: 50px;
   height: 50px;
   box-sizing: border-box;
   border: cornsilk solid 1px;
   line-height: 50px;
-  font-size: 20px;
+  font-size: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,5 +101,17 @@ a {
 }
 
 .swiped {
+  color: orange;
+  font-size: 16px;
+  background-color: #efefef;
+}
+
+.marked {
+  font-size: 25px;
+  color: red;
+}
+.unsure {
+  content: "?";
+  font-size: 25px;
   color: orange;
 }

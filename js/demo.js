@@ -1,49 +1,94 @@
 Router.route("/mineswiper", function () {
   //   console.log("mineswiper");
-  $("#start").addEventListener("click", () => {
-    const map = renderMineSwiper("easy");
+  setTitle("Mine Swiper");
+  $("#start").addEventListener("click", (e) => {
+    const mode = modeChosen();
+    const map = renderMineSwiper(mode);
+    e.target.disabled = true;
+  });
+  $("#reset").addEventListener("click", (e) => {
+    $("#start").disabled = false;
   });
 });
 Router.route("/hitblocks", function () {
+  setTitle("Hit Blocks");
   console.log("hitblocks");
 });
 Router.route("/pushbox", function () {
+  setTitle("Push Boxes");
   console.log("pushbox");
 });
+
+function modeChosen() {
+  const v = parseInt($("#mode").value);
+  const mode = v === 3 ? "expert" : v === 2 ? "hard" : "easy";
+  return mode;
+}
+
+function setTitle(title) {
+  $(".gametitle").innerHTML = title;
+}
 // console.log(location);
 function createElement(name, props, children) {
   const node = document.createElement(name);
 }
 function renderMineSwiper(mode) {
-  $(".mine-map").innerHTML = "";
-  const title = $(".gametitle");
+  // clear all mines before setting mines
   const map = $(".mine-map");
+  map.innerHTML = "";
   let size = mode === "hard" ? 9 * 16 : mode === "expert" ? 16 * 30 : 6 * 9;
+  let n = mode === "hard" ? 16 : mode === "expert" ? 30 : 9;
+  // 去除先前模式，渲染当前模式
+  map.classList.remove("expert-map", "hard-map", "easy-map");
   map.classList.add(mode + "-map");
-  title.innerHTML = "MinSwiper";
+  // 生成雷区
   for (let i = 0; i < size; i++) {
     const mineSeat = document.createElement("div");
     mineSeat.classList.add("mine-seat");
     mineSeat.id = `xy${i}`;
     map.appendChild(mineSeat);
   }
-  const minedMap = setMines(mode);
+  // 随机布雷
+  const minedMap = setMines(mode, n);
+  // 添加交互事件并统计数据
+  let markedmines = 0;
   for (let i = 0; i < size; i++) {
-    map.childNodes[i].addEventListener("click", e => {
-      swipe(e, minedMap, mode);
+    map.childNodes[i].addEventListener("mousedown", (e) => {
+      // e.preventDefault();
+      const clicked = e.target;
+      document.oncontextmenu = () => false;
+      if (e.which === 1 && !clicked.classList.contains("marked"))
+        swipe(e, minedMap, mode);
+      else if (e.which === 3) {
+        e.target.innerHTML = "&times;";
+        e.target.classList.toggle("marked");
+        markedmines += 1;
+      }
+      const blocks = $(".mine-seat", true);
+      let noMines = 0;
+      for (let block of blocks) {
+        noMines += block.classList.contains("swiped") ? 1 : 0;
+      }
+      $("#markedmines").innerHTML = markedmines;
+      $("#unknown").innerHTML = size - noMines;
+      if (noMines === size - n) {
+        alert("You win!");
+      }
+      console.log("noMines:", noMines);
     });
   }
   return map;
 }
 
-function setMines(mode) {
+function setMines(mode, n) {
   let coordinates = [];
   let mines = [];
   let i = 0,
     j = 0,
-    n = mode === "hard" ? 16 : mode === "expert" ? 30 : 9,
     width = mode === "hard" ? 16 : mode === "expert" ? 30 : 9,
     height = mode === "hard" ? 9 : mode === "expert" ? 16 : 6;
+
+  $("#totalmines").innerHTML = n;
 
   while (i < height * width) {
     coordinates.push(i);
@@ -113,19 +158,21 @@ function setMines(mode) {
   return coordinates;
 }
 
-function swipe(e, mines, mode) {
+function swipe(e, minesMap, mode) {
   const id = e.target.id.slice(2);
   const minesId = document.querySelectorAll(".mine");
   // console.log("id:", id, "\nminedMap:", mines);
 
-  if (mines[id] == 9) {
+  if (minesMap[id] == 9) {
+    alert("Game over");
     for (let e of minesId) {
       e.classList.remove("mine-hide");
       e.classList.add("mine-boom");
       // console.log($(`#mine`).classList);
     }
+    return 0;
   } else {
-    swipeSuccess(mines, id, mode);
+    swipeSuccess(minesMap, id, mode);
   }
 }
 
@@ -171,14 +218,14 @@ function showMinesAround(minesMap, cxy) {
   ) {
     safeSeat.classList.add("swiped");
     swipeSuccess(minesMap, cxy, mode);
-    console.log(cxy);
+    // console.log(cxy);
   } else {
     if (safeSeat) safeSeat.classList.add("swiped");
   }
 }
 
-function $(selector) {
-  return document.querySelector(selector)
-    ? document.querySelector(selector)
-    : null;
+function $(selector, mode = false) {
+  return mode
+    ? document.querySelectorAll(selector)
+    : document.querySelector(selector);
 }
