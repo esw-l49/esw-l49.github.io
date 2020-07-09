@@ -111,7 +111,7 @@ function setMines(mode, n) {
     $(`#xy${xy}`).innerHTML =
       "<img class='mine mine-hide' src='../images/mine-black.png' ></img>";
   }
-  // 未放置雷的格子写上周围雷数
+  // 放置雷的坐标写上9表示有雷
   const safeBlocks = coordinates;
   coordinates = [];
   j = 0;
@@ -121,10 +121,8 @@ function setMines(mode, n) {
     coordinates[mines[j]] = 9;
     j++;
   }
-  // console.log(
-  //   "safeBlocks:",
-  //   safeBlocks.sort((a, b) => a - b)
-  // );
+
+  // 未放置雷的格子写上周围雷数
   let mineNum = 0;
   j = 0;
   while (j < width * height - n) {
@@ -160,16 +158,16 @@ function setMines(mode, n) {
 
 function swipe(e, minesMap, mode) {
   const id = e.target.id.slice(2);
-  const minesId = document.querySelectorAll(".mine");
+  const allMines = document.querySelectorAll(".mine");
   // console.log("id:", id, "\nminedMap:", mines);
 
   if (minesMap[id] == 9) {
-    alert("Game over");
-    for (let e of minesId) {
+    for (let e of allMines) {
       e.classList.remove("mine-hide");
       e.classList.add("mine-boom");
       // console.log($(`#mine`).classList);
     }
+    alert("Game over");
     return 0;
   } else {
     swipeSuccess(minesMap, id, mode);

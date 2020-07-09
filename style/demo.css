@@ -98,6 +98,7 @@ a {
   visibility: visible;
   height: 30px;
   width: 30px;
+  transition: 1s;
 }
 
 .swiped {
