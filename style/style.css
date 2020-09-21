@@ -83,14 +83,14 @@ main aside {
   margin-left: 1rem;
   background: antiquewhite;
 }
-.btn {
+.form .btn {
   height: 2rem;
-  flex: auto;
+  flex: 1 1 2rem;
   border: none;
 }
 .search {
   /* flex: 12; */
-  flex: auto;
+  flex: 3;
   height: 2rem;
 }
 .primary {

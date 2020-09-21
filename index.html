@@ -77,6 +77,8 @@
     <main>
       <!-- 网页主体内容 -->
       <article id="article">
+        <img src="images/logo-180-softblue.png" alt="ptkms" height="50" />
+        <p>PTKMS应用支持，如有疑问请联系开发者。</p>
         <!-- 此处包含一个 article（一篇文章），内容略…… -->
       </article>
 
@@ -97,7 +99,7 @@
 
     <footer>
       <!-- 本站所有网页的统一页脚 -->
-      <p>Copyright© 2020 Eswing</p>
+      <p>作者邮箱:574002934@qq.com.</p>
     </footer>
     <script src="js/router.js"></script>
     <script src="js/app.js"></script>
@@ -105,66 +107,7 @@
       const article = document.querySelector("#article");
       const URLParams = getURLParameters(window.location.search);
       // console.log(window.location);
-      if (URLParams.page != undefined) {
-        const title = document.createElement("h3");
-        const paragraph = document.createElement("p");
-        switch (URLParams.page) {
-          case "html":
-            title.innerHTML = "Html";
-            fetch("data/json/html.json")
-              .then((res) => res.json())
-              .then((res) => {
-                const h1 = document.createElement("h3");
-                const h2 = document.createElement("h3");
-                const p1 = document.createElement("p");
-                const p2 = document.createElement("p");
-                h1.innerHTML = res.section[0].title;
-                h2.innerHTML = res.section[1].title;
-                p1.innerHTML = res.section[0].content;
-                p2.innerHTML = res.section[1].content;
-                paragraph.appendChild(h1);
-                paragraph.appendChild(p1);
-                paragraph.appendChild(h2);
-                paragraph.appendChild(p2);
-                article.appendChild(paragraph);
-              });
-
-            break;
-          case "css":
-            title.innerHTML = "CSS";
-            paragraph.innerHTML = "CSS:层叠样式表";
-            article.appendChild(title);
-            article.appendChild(paragraph);
-            break;
-          case "javascript":
-            title.innerHTML = "Javascript";
-            paragraph.innerHTML = "Javascript:网页脚本语言";
-            article.appendChild(title);
-            article.appendChild(paragraph);
-            break;
-          default:
-            title.innerHTML = "Html";
-            fetch("./data/json/html.json")
-              .then((res) => res.json())
-              .then((res) => {
-                const h1 = createElement("h3");
-                const h2 = createElement("h3");
-                const p1 = createElement("p");
-                const p2 = createElement("p");
-                h1.innerHTML = res.section[0].title;
-                h2.innerHTML = res.section[1].title;
-                p1.innerHTML = res.section[0].content;
-                p2.innerHTML = res.section[1].content;
-                paragraph.appendChild(h1);
-                paragraph.appendChild(p1);
-                paragraph.appendChild(h2);
-                paragraph.appendChild(p2);
-                article.appendChild(paragraph);
-              });
-
-            break;
-        }
-      }
+      // article.textContent =;
     </script>
   </body>
 </html>
